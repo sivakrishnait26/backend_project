@@ -32,8 +32,8 @@ app.get('/books/', async(req, res)=>{
 })
 
 app.get('/books/:bookId', async(req, res)=>{
-    const {book_Id} = req.params
-    const getBookQuery = `select * from books where bookId='${book_Id}';`;
+    const {bookId} = req.params
+    const getBookQuery = `select * from books where bookId='${bookId}';`;
     const getbook = await db.get(getBookQuery)
     res.send(getbook)
 })
@@ -46,32 +46,32 @@ app.post('/books/', async(req, res)=>{
   VALUES('${bookname}', '${authorId}', '${bookdetails}');
 `;
     const dbResponse = await db.run(addBookQuery)
-    const book_id = dbResponse.lastID
+    const bookId = dbResponse.lastID
     
-    res.send({bookId: book_id});
+    res.send({bookId: bookId});
 })
 
-app.delete('/books/:book_Id/', async(req, res)=>{
-    const {book_Id} = req.params;
-    const deleteBookQuery = `delete from books where bookId = '${book_Id}';`;
+app.delete('/books/:bookId/', async(req, res)=>{
+    const {bookId} = req.params;
+    const deleteBookQuery = `delete from books where bookId = '${bookId}';`;
     await db.run(deleteBookQuery)
     
     res.send("book deleted successfully");
 })
 
-app.put('/books/:book_Id/', async(req, res)=>{
-    const {book_Id} = req.params;
+app.put('/books/:bookId/', async(req, res)=>{
+    const {bookId} = req.params;
     
    
     const updateBookQuery = `update books 
     set bookname = ${bookname}, authorId = ${authorId}, bookdetails = ${bookdetails}
-    where bookId = '${book_Id}';`;
+    where bookId = '${bookId}';`;
     await db.run(updateBookQuery)
     
     res.send("book updated successfully");
 })
 
-app.get('/authors/:authorId/books/:book_Id/', async(req, res)=>{
+app.get('/authors/:authorId/books/:bookId/', async(req, res)=>{
     const {authorId} = req.params
     const getBookQuery = `select * from books where authorId='${authorId}';`;
     const getbook = await db.get(getBookQuery)
