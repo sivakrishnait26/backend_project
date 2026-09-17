@@ -11,7 +11,7 @@ const fs = require("fs");
 app.use(cors())
 app.use(express.json())
 const db_path = path.join(__dirname, 'goodreads.db')
-const PORT = process.env.PORT
+const PORT = process.env.PORT||5000
 const SECRETE_TOKEN = process.env.SECRETE_TOKEN
 let db = null;
 const initializeDBAndServer = async()=> {
@@ -64,7 +64,7 @@ app.get('/books/',authenticateToken, async(req, res)=>{
     const {search_q, limit, offset} = req.query;
     const getBooksQuery = `select * from books where bookname like '%${search_q}%' limit ${limit} offset ${offset};`;
     const booksArray = await db.all(getBooksQuery);
-    res.send(booksArray);
+    res.send(booksArray); 
 })
 
 app.get('/books/:bookId', authenticateToken, async(req, res)=>{
@@ -140,7 +140,7 @@ app.post("/login/", async(req, res) => {
 
         if(isPasswordMatch === true){
             const payload = {username: username}
-            const jwtToken = jwt.sign(payload, "hbjhbjhbjbhjb");
+            const jwtToken = jwt.sign(payload, SECRETE_TOKEN);
             
             fs.writeFileSync("token.txt", jwtToken);
 
