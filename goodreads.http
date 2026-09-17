@@ -1,13 +1,46 @@
-GET http://localhost:5000/books/
+
+POST http://localhost:5000/users/
+Content-Type: application/json
+
+{
+
+    "username": "Sivakrishna",
+    "password": "Siva123",
+    "gender": "Male",
+    "location": "Hyderabad"
+
+}
+
+###
+
+POST http://localhost:5000/login/
+Content-Type: application/json
+
+{
+
+    "username": "Sivakrishna",
+    "password": "Siva123"
+}
+
+
+###
+
+GET http://localhost:5000/profile/ 
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlNpdmFrcmlzaG5hIiwiaWF0IjoxNzg2MjA4MDU3fQ.YEKVuITOfeUQ_WkyHma1Q_UtYmXwBdBVTwtE5FPpXuQ
+
 
 ###
 
 GET http://localhost:5000/books/4/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlNpdmFrcmlzaG5hIiwiaWF0IjoxNzg2MjA4MDU3fQ.YEKVuITOfeUQ_WkyHma1Q_UtYmXwBdBVTwtE5FPpXuQ
+
+
 
 ###
 
 POST http://localhost:5000/books/
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlNpdmFrcmlzaG5hIiwiaWF0IjoxNzg2MjA4MDU3fQ.YEKVuITOfeUQ_WkyHma1Q_UtYmXwBdBVTwtE5FPpXuQ
 
 {
     "bookname": "heart of the beat",
@@ -19,19 +52,9 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:5000/books/4/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlNpdmFrcmlzaG5hIiwiaWF0IjoxNzgxOTYyMDUwfQ.3BJdctX_S0v_2kXu4OyfZ80VTOiNHNTMUTsEPJGOckw
 
 ###
 
 GET http://localhost:5000/authors/100/books/1/
-
-###
-
-PUT http://localhost:5000/books/4/
-Content-Type: application/json
-
-{
-    "bookname": "hearts of the beat",
-    "authorId": 104,
-    "bookdetails": "hell ram",
-    "bookId": 4
-}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlNpdmFrcmlzaG5hIiwiaWF0IjoxNzg2MjA4MDU3fQ.YEKVuITOfeUQ_WkyHma1Q_UtYmXwBdBVTwtE5FPpXuQ
